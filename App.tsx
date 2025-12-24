@@ -1,13 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
-import Layout from './components/Layout';
-import Dashboard from './components/Dashboard';
-import SalesForm from './components/SalesForm';
-import ExpensesForm from './components/ExpensesForm';
-import History from './components/History';
-import Reports from './components/Reports';
-import { AppTab, Sale, Expense } from './types';
-import { getSales, getExpenses, saveSales, saveExpenses } from './storage';
+import Layout from './components/Layout.tsx';
+import Dashboard from './components/Dashboard.tsx';
+import SalesForm from './components/SalesForm.tsx';
+import ExpensesForm from './components/ExpensesForm.tsx';
+import History from './components/History.tsx';
+import Reports from './components/Reports.tsx';
+import { AppTab, Sale, Expense } from './types.ts';
+import { getSales, getExpenses, saveSales, saveExpenses } from './storage.ts';
 
 const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<AppTab>('dashboard');

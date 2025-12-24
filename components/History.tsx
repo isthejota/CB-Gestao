@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
-import { Sale, Expense, Drinks } from '../types';
-import { formatCurrency, formatDate, formatTime } from '../utils';
+import { Sale, Expense, Drinks } from '../types.ts';
+import { formatCurrency, formatDate, formatTime } from '../utils.ts';
 
 interface HistoryProps {
   sales: Sale[];

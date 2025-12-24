@@ -1,7 +1,7 @@
 
 import React from 'react';
-import { Sale, Expense } from '../types';
-import { formatCurrency, formatDate, getCurrentWeekRange, getBusinessDayStart } from '../utils';
+import { Sale, Expense } from '../types.ts';
+import { formatCurrency, formatDate, getCurrentWeekRange, getBusinessDayStart } from '../utils.ts';
 
 interface ReportsProps {
   sales: Sale[];

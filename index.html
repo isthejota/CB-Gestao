@@ -63,18 +63,37 @@
         background: #27272a;
         border-radius: 10px;
       }
+      #root:empty::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 24px;
+        height: 24px;
+        margin: -12px 0 0 -12px;
+        border: 2px solid rgba(255,255,255,0.1);
+        border-top-color: #ef4444;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+      }
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
     </style>
 <script type="importmap">
 {
   "imports": {
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "react": "https://esm.sh/react@^19.2.3"
+    "react": "https://esm.sh/react@18.2.0",
+    "react-dom": "https://esm.sh/react-dom@18.2.0",
+    "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+    "react/": "https://esm.sh/react@18.2.0/",
+    "react-dom/": "https://esm.sh/react-dom@18.2.0/"
   }
 }
 </script>
 </head>
 <body class="selection:bg-red-600">
     <div id="root"></div>
+    <script type="module" src="index.tsx"></script>
 </body>
 </html>
