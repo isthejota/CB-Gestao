@@ -41,8 +41,11 @@ const Layout: React.FC<LayoutProps> = ({ activeTab, setActiveTab, children }) =>
       <header className="sticky top-0 z-50 glass border-b border-white/5 px-6 py-4">
         <div className="max-w-5xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center font-black italic shadow-lg shadow-red-600/20">CB</div>
-            <h1 className="text-sm font-black tracking-widest uppercase italic">Controle <span className="text-zinc-500">Pro</span></h1>
+            {/* Ícone do aplicativo: "CB" em vermelho e fundo preto */}
+            <div className="w-10 h-10 bg-black border border-red-600/30 rounded-lg flex items-center justify-center font-black italic shadow-lg shadow-black/50">
+               <span className="text-red-600 text-lg">CB</span>
+            </div>
+            <h1 className="text-sm font-black tracking-widest uppercase italic ml-1">Controle <span className="text-zinc-500">Pro</span></h1>
           </div>
           <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-lg shadow-emerald-500/20"></div>
         </div>
