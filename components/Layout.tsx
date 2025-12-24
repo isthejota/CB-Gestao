@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { AppTab } from '../types';
+import { AppTab } from '../types.ts';
 
 interface LayoutProps {
   activeTab: AppTab;
@@ -28,60 +28,58 @@ const Icons = {
 
 const Layout: React.FC<LayoutProps> = ({ activeTab, setActiveTab, children }) => {
   const navItems = [
-    { id: 'dashboard', label: 'Início', icon: Icons.Home },
-    { id: 'vendas', label: 'Venda', icon: Icons.Sale },
-    { id: 'gastos', label: 'Custos', icon: Icons.Cost },
-    { id: 'historico', label: 'Histórico', icon: Icons.Logs },
-    { id: 'relatorios', label: 'Análise', icon: Icons.Data },
+    { id: 'dashboard' as AppTab, label: 'Início', icon: Icons.Home },
+    { id: 'vendas' as AppTab, label: 'Venda', icon: Icons.Sale },
+    { id: 'gastos' as AppTab, label: 'Custos', icon: Icons.Cost },
+    { id: 'historico' as AppTab, label: 'Atividade', icon: Icons.Logs },
+    { id: 'relatorios' as AppTab, label: 'Análise', icon: Icons.Data },
   ];
 
   return (
-    <div className="flex flex-col min-h-screen max-w-md mx-auto relative bg-[#050505] selection:bg-red-600">
-      <header className="px-6 py-6 sticky top-0 z-[60] glass border-b border-white/5 flex justify-between items-center">
-        <div>
-          <h1 className="text-xl font-black italic tracking-tighter text-white">CB<span className="text-red-600">.</span>GESTÃO</h1>
-          <div className="flex items-center gap-1.5 mt-0.5">
-            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
-            <span className="text-[9px] font-bold text-zinc-500 uppercase tracking-widest">Sistema Ativo</span>
+    <div className="min-h-screen bg-[#050505] text-white flex flex-col">
+      {/* Header Fixo */}
+      <header className="sticky top-0 z-50 glass border-b border-white/5 px-6 py-4">
+        <div className="max-w-5xl mx-auto flex justify-between items-center">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center font-black italic shadow-lg shadow-red-600/20">CB</div>
+            <h1 className="text-sm font-black tracking-widest uppercase italic">Controle <span className="text-zinc-500">Pro</span></h1>
           </div>
+          <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-lg shadow-emerald-500/20"></div>
         </div>
-        <button type="button" className="w-10 h-10 rounded-full bg-zinc-900 border border-white/10 flex items-center justify-center text-zinc-400 active:scale-90 transition-transform">
-           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.72V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.17a2 2 0 0 1 1-1.74l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
-        </button>
       </header>
 
-      <main className="flex-grow px-5 pt-4 pb-40">
-        <div className="animate-fade">
-          {children}
-        </div>
+      {/* Conteúdo Principal Expansivo */}
+      <main className="flex-grow w-full max-w-5xl mx-auto px-4 sm:px-6 pt-6 pb-32">
+        {children}
       </main>
 
-      {/* Floating Bottom Navigation Reforçada */}
-      <div className="fixed bottom-8 left-1/2 -translate-x-1/2 w-[92%] max-w-[360px] z-[100]">
-        <nav className="bg-zinc-900/90 backdrop-blur-3xl rounded-[2.5rem] p-2 flex justify-between items-center shadow-[0_25px_60px_rgba(0,0,0,0.6)] border border-white/10">
-          {navItems.map((item) => {
-            const IconComponent = item.icon;
-            const isActive = activeTab === item.id;
-            return (
-              <button
-                key={item.id}
-                type="button"
-                onClick={() => setActiveTab(item.id as AppTab)}
-                className={`relative flex items-center justify-center w-14 h-14 rounded-full transition-all duration-300 outline-none ${
-                  isActive 
-                  ? 'bg-white text-black scale-110 shadow-[0_0_20px_rgba(255,255,255,0.2)]' 
-                  : 'text-zinc-500 hover:text-zinc-300 active:bg-white/5'
-                }`}
-              >
-                <IconComponent />
-                {isActive && (
-                  <div className="absolute -bottom-1 w-1 h-1 bg-black rounded-full"></div>
-                )}
-              </button>
-            );
-          })}
-        </nav>
-      </div>
+      {/* Barra de Navegação Inferior Responsiva */}
+      <nav className="fixed bottom-0 left-0 right-0 z-50 px-4 pb-6 pt-2 pointer-events-none">
+        <div className="max-w-md mx-auto pointer-events-auto">
+          <div className="glass border border-white/10 rounded-[2rem] p-2 flex justify-between items-center shadow-2xl backdrop-blur-3xl">
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              const isActive = activeTab === item.id;
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => setActiveTab(item.id)}
+                  className={`flex flex-col items-center justify-center w-16 h-14 rounded-2xl transition-all duration-300 ${
+                    isActive 
+                    ? 'bg-red-600 text-white shadow-lg shadow-red-600/40 scale-110' 
+                    : 'text-zinc-500 hover:text-zinc-300'
+                  }`}
+                >
+                  <Icon />
+                  <span className={`text-[8px] font-black uppercase mt-1 tracking-tighter ${isActive ? 'opacity-100' : 'opacity-60'}`}>
+                    {item.label}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </nav>
     </div>
   );
 };
